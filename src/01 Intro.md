@@ -1,25 +1,52 @@
 # Introduction
 
 ---
-## Why graph databases?
-- Over 300 years history of graph theory!
+## What are graphs?
+- 1736, Leonhard Euler.
+- Is it possible to visit all four areas of a city connected by 7 bridges, by crossing each bridge only once?
+![](img/euler.PNG)
+
+---
+## Formal definition
+- Collection of *vertices* (*nodes*) and *edges* (*relationships*).
+- Vertices represent entities of the real world, and edges the relationship between them.
+
+---
+## Graph vs charts
+![](img/graphs.PNG)
+
+---
+## Examples
+- Modeling dynamic environments from financial markets to IT services.
+- Forecasting the spread of epidemics as well as rippling service delays and outages.
+- Finding predictive features for machine learning to combat financial crimes.
+- Uncovering patterns for personalized experiences and recommendations.
+
+---
+## The most valuable graphs
 - **Facebook:** discrete information about people is important, but *relationships* among them (the *social graph*) is more. 
 - **Google:** Store and process discrete documents is fine, the *web graph* that encodes relationships among them is where the value is.
 
 ---
-## But what is a graph?
-- Collection of *vertices* (*nodes*) and *edges* (*relationships*).
-- Vertices represent entities of the real world, and edges the relationship between them.
-- **Examples**
+## Graph analytics and algorithms
+- Use relationships between nodes to infer the organization and dynamics of complex systems.
+- **Four main families**:
+	- Pathfinding and graph search.
+	- Centrality.
+	- Community detection.
+	- Link prediction.
 
 ---
-## Labeled Property Graph Model
+## Local vs global properties
+- **Local:** Graph queries that consider specific parts of the graph, and description of interactions in the surrounding subgraph.
+- **Global:** Graph queries or processing that sheds light on the overall nature of the network.
+- Some cases lie in between (e.g. transaction analysis) but had been divided due to technology limitations.
 
-- It contains nodes and relationships. 
-- Nodes contain properties (key-value pairs). 
-- Nodes can be labeled with one or more labels. 
-- Relationships are named and directed, and always have a start and end node. 
-- Relationships can also contain properties.
+---
+## OLTP vs OLAP
+- **Online transaction processing (OLTP)** operations are typically short activities like booking a ticket, crediting an account, booking a sale.
+- **Online analytical processing (OLAP)** facilitates more complex queries and analysis over historical data.
+- **HTAP:** Hybrid transactional and analytical processing.
 
 ---
 # Data Storage
@@ -66,5 +93,43 @@ Partner and Vukotic's experiment:
 
 ---
 ## Another example: online retail
-
+- Quickly retrieve a user purchase history (without joins).
 ![](img/retail.PNG)
+
+---
+# Graph platforms and processing
+
+---
+## Apache Spark
+- Support for various data science workflows.
+- Great choice when:
+	- algorithms are parallelizable.
+	- analysis can be run offline in batch mode.
+	- graph analysis is on data which is not transformed into a graph format.
+	- infrequent use of graph algorithms.
+	- team can (and want to) code their own algorithms.
+
+---
+## Neo4j Graph Platform
+- Tightly integrated graph database + algorithm-centric processing optimized for graphs.
+- Great choice when:
+	- algorithms are performance-sensitive.
+	- analysis/results are integrated with transactional workloads.
+	- integration with graph visualization platforms.
+	- team prefers prepackaged and supported algorithms.
+
+---
+## NetworkX
+- Python package for the creation, manipulation, and study of the structure, dynamics, and functions of complex networks.
+- Great choice when:
+	- all the Python advantages needed: fast prototyping, multi-platform, easy to teach.
+	- develop more sophisticated analysis than with Neo4j.
+	- no mood to deal with Neo4j's lack of documentation.
+	- local, in-memory graph toolkit.
+
+---
+## The veredict?
+- Many organizations use both Neo4j and Spark for graph processing.
+- Spark can do high-level filtering and preprocessing of massive datasets.
+- Neo4j can do more specific processing and integration with graph-based applications.
+- NetworkX is a great tool for prototyping and doing more complicated analysis.
