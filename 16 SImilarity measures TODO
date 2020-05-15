@@ -1,0 +1,21 @@
+// Projection of actors->movies graph into actors
+
+// Unweighted projection
+MATCH (p: Person)-[:ACTED_IN]->(m:Movie)<-[:ACTED_IN]-(q:Person)
+MERGE (p)-[:ACTED_TOGETHER]->(q)
+
+// Weighted projection
+MATCH (p: Person)-[:ACTED_IN]->(m:Movie)<-[:ACTED_IN]-(q:Person)
+WITH p,q, count(*) AS common_movies
+MERGE (p)-[:ACTED_TOGETHER {weight:common_movies}]->(q)
+
+// Similarity measures on bipartite graphs
+
+// Cosine similarity: values between -1, 1, 
+
+// Jaccard similarity: values between 0 and 1 (common items / total items)
+MATCH (p:Person {name:'Tom Hanks'})-[:ACTED_IN]->(mp)
+MATCH (q:Person {name:'Tom Cruise'})-[:ACTED_IN]->(mq)
+WITH q, collect(id(mq)) AS qMovies, p, collect(id(mp)) AS pMovies
+RETURN p.name AS actor1, q.name AS actor2, gds.alpha.similarity.jaccard(pMovies,qMovies)
+

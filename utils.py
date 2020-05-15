@@ -1,4 +1,5 @@
-import tqdm
+import networkx as nx
+from tqdm import tqdm
 import gzip
 import json
 
