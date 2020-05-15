@@ -1,3 +1,18 @@
+import tqdm
+import gzip
+import json
+
+def load_university_social_network():
+    G = nx.read_edgelist('./data/moreno_oz/out.moreno_oz_oz',
+                         comments='%',
+                         delimiter=' ',
+                         data=[('rating', int)],
+                         create_using=nx.DiGraph(),
+                         nodetype=int)
+    return G
+
+
+
 def load_amazon_reviews():
     # Read raw data.
     data = []
